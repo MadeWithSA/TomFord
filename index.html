@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOM FORD — Tobacco Vanille | Official Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #e6c875;
+      --gold-dark: #9c7a23;
+      --dark-bg: #070707;
+      --light-bg: #faf8f5;
+      --warm-bg: #1a120b;
+      --text-dark: #121212;
+      --text-muted: #6e6a63;
+      --border-light: #e2dcd3;
+      --tobacco: #3d2b1f;
+      --vanilla: #c9a86c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Навигация */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+      transition: background 0.5s ease, padding 0.4s ease, border-color 0.5s ease;
+    }
+
+    header.scrolled-white {
+      background: rgba(26, 18, 11, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 16px 50px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .brand-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    header.scrolled-white .brand-logo {
+      color: var(--gold-light);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .buy-Anchor {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--gold);
+      transition: color 0.3s;
+    }
+
+    header.scrolled-white .buy-Anchor {
+      color: var(--gold-light);
+    }
+
+    /* Секция с видео-скроллом */
+    .video-scroll-track {
+      position: relative;
+      height: 500vh;
+      width: 100%;
+    }
+
+    .sticky-viewport {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050505;
+      will-change: transform;
+    }
+
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+      will-change: transform;
+    }
+
+    .video-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.7) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Всплывающие титры — слева и справа */
+    .story-overlay {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .story-step {
+      position: absolute;
+      top: 50%;
+      width: min(420px, 38vw);
+      opacity: 0;
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    .story-step.left {
+      left: 6%;
+      transform: translateY(-50%) translateX(-30px);
+      text-align: left;
+    }
+
+    .story-step.right {
+      right: 6%;
+      left: auto;
+      transform: translateY(-50%) translateX(30px);
+      text-align: right;
+    }
+
+    .story-step.active {
+      opacity: 1;
+    }
+
+    .story-step.left.active {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .story-step.right.active {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .story-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .story-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4.2vw, 52px);
+      font-weight: 600;
+      letter-spacing: 2px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      text-shadow: 0 8px 28px rgba(0,0,0,0.85);
+    }
+
+    .story-desc {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+      max-width: 320px;
+      letter-spacing: 0.3px;
+    }
+
+    .story-step.right .story-desc {
+      margin-left: auto;
+    }
+
+    /* Прогресс-бар */
+    .scroll-progress-wrap {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-hint {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      transition: opacity 0.4s;
+    }
+
+    .progress-bar-bg {
+      width: 160px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.18);
+      overflow: hidden;
+      border-radius: 1px;
+    }
+
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      transition: width 0.06s linear;
+      will-change: width;
+    }
+
+    /* БЕЛАЯ / ТЁПЛАЯ СЕКЦИЯ ПОКУПКИ */
+    .white-boutique-section {
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(165deg, #1a120b 0%, #2a1c12 35%, #1f150e 70%, #120c08 100%);
+      color: #f5f0e8;
+      min-height: 100vh;
+      padding: 110px 8% 90px;
+      box-shadow: 0 -40px 80px rgba(0,0,0,0.7);
+      overflow: hidden;
+      transition: background 0.8s ease;
+    }
+
+    .white-boutique-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(156, 122, 35, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .white-boutique-section.visible::before {
+      opacity: 1;
+    }
+
+    .boutique-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .white-boutique-section.visible .section-header {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .section-main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #f5f0e8;
+    }
+
+    /* Главный блок выбора объема */
+    .product-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 65px;
+      align-items: center;
+      background: linear-gradient(145deg, rgba(40, 28, 18, 0.9) 0%, rgba(25, 18, 12, 0.95) 100%);
+      padding: 55px;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      margin-bottom: 80px;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s, box-shadow 0.4s ease;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .white-boutique-section.visible .product-showcase {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-showcase:hover {
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212, 175, 55, 0.08);
+    }
+
+    .flacon-preview {
+      position: relative;
+      background: radial-gradient(circle at center, #2e2218 0%, #0d0a07 100%);
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      overflow: hidden;
+      border-radius: 3px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .bottle-silhouette {
+      width: 150px;
+      height: 240px;
+      background: linear-gradient(135deg, #2b1d14 0%, #120c07 60%, #3a281c 100%);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 25px rgba(212, 175, 55, 0.15);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .bottle-neck {
+      position: absolute;
+      top: -28px;
+      width: 54px;
+      height: 28px;
+      background: linear-gradient(to right, #9c7a23, #f3dc8a, #9c7a23);
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -78px;
+      width: 96px;
+      height: 50px;
+      background: linear-gradient(135deg, #241911, #0f0a07);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+    }
+
+    .bottle-plaque {
+      width: 105px;
+      height: 105px;
+      background: linear-gradient(135deg, #dfbe6f 0%, #b58d3d 50%, #f0d794 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      color: #1a130b;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .bottle-plaque strong {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .bottle-plaque span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.15;
+    }
+
+    .bottle-plaque small {
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .preview-badge {
+      position: absolute;
+      bottom: 22px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .product-details h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #f5f0e8;
+    }
+
+    .product-concentration {
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    .product-description {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(245, 240, 232, 0.75);
+      margin-bottom: 30px;
+    }
+
+    .notes-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .note-pill {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold-light);
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .note-pill:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+    }
+
+    .volume-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+      color: rgba(245, 240, 232, 0.7);
+    }
+
+    .volume-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .vol-option {
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(20, 14, 10, 0.6);
+      padding: 14px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: #f5f0e8;
+    }
+
+    .vol-option:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.12);
+    }
+
+    .vol-option.selected {
+      background: var(--gold);
+      color: #1a130b;
+      border-color: var(--gold);
+    }
+
+    .vol-ml {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .vol-type {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .purchase-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 26px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      gap: 20px;
+    }
+
+    .price-display {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.55);
+    }
+
+    .price-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .order-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #d4af37 0%, #b58d3d 50%, #9c7a23 100%);
+      color: #1a130b;
+      border: none;
+      padding: 18px 32px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .order-btn:hover {
+      background: linear-gradient(135deg, #e6c875 0%, #d4af37 50%, #b58d3d 100%);
+      box-shadow: 0 6px 28px rgba(212, 175, 55, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .formats-grid-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #f5f0e8;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+    }
+
+    .white-boutique-section.visible .formats-grid-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .formats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .format-card {
+      background: linear-gradient(160deg, rgba(35, 25, 16, 0.95) 0%, rgba(20, 14, 10, 0.98) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .white-boutique-section.visible .format-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .white-boutique-section.visible .format-card:nth-child(1) { transition-delay: 0.35s; }
+    .white-boutique-section.visible .format-card:nth-child(2) { transition-delay: 0.45s; }
+    .white-boutique-section.visible .format-card:nth-child(3) { transition-delay: 0.55s; }
+
+    .format-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 30px rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .format-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .format-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #f5f0e8;
+    }
+
+    .format-card p {
+      font-size: 13px;
+      color: rgba(245, 240, 232, 0.6);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .format-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      padding-top: 18px;
+    }
+
+    .format-price {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--gold-light);
+    }
+
+    .quick-select-btn {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 8px 16px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      color: var(--gold-light);
+    }
+
+    .quick-select-btn:hover {
+      background: var(--gold);
+      color: #1a130b;
+      border-color: var(--gold);
+    }
+
+    /* Модальное окно */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      background: linear-gradient(165deg, #1f150e 0%, #120c08 100%);
+      color: #f5f0e8;
+      max-width: 460px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gold-light);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+    }
+
+    .modal-window h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      margin-bottom: 8px;
+      color: #f5f0e8;
+    }
+
+    .modal-summary {
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      color: rgba(245, 240, 232, 0.7);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(0,0,0,0.3);
+      color: #f5f0e8;
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.25s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(245, 240, 232, 0.35);
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 24px;
+      }
+      .product-showcase {
+        grid-template-columns: 1fr;
+        padding: 30px 22px;
+      }
+      .volume-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .story-step {
+        width: min(320px, 85vw);
+      }
+      .story-step.left {
+        left: 4%;
+      }
+      .story-step.right {
+        right: 4%;
+      }
+      .story-title {
+        font-size: clamp(24px, 6vw, 36px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .story-step.left,
+      .story-step.right {
+        left: 50%;
+        right: auto;
+        width: 90%;
+        text-align: center;
+        transform: translate(-50%, -50%) translateY(20px);
+      }
+      .story-step.left.active,
+      .story-step.right.active {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      .story-step.right .story-desc {
+        margin-left: 0;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Верхняя панель -->
+  <header id="main-header">
+    <a href="#" class="brand-logo">TOM FORD</a>
+    <div class="nav-actions">
+      <a href="#boutique" class="buy-Anchor">Выбрать объем</a>
+    </div>
+  </header>
+
+  <!-- Секция с видео, которое двигается от колесика мыши -->
+  <section class="video-scroll-track" id="scroll-track">
+    <div class="sticky-viewport">
+      <video id="bg-video" src="video.mp4" muted playsinline preload="auto"></video>
+      <div class="video-vignette"></div>
+
+      <!-- Титры слева и справа, продукт в центре -->
+      <div class="story-overlay">
+        <div class="story-step left active" data-start="0" data-end="0.28">
+          <span class="story-subtitle">Private Blend Collection</span>
+          <h1 class="story-title">Tobacco<br>Vanille</h1>
+          <p class="story-desc">Культовый аромат, созданный для истинных ценителей роскоши</p>
+        </div>
+        <div class="story-step right" data-start="0.30" data-end="0.58">
+          <span class="story-subtitle">Богатый пряный шлейф</span>
+          <h2 class="story-title">Листья табака<br>и редкая ваниль</h2>
+          <p class="story-desc">Насыщенные аккорды трубочного табака и мадагаскарской ванили</p>
+        </div>
+        <div class="story-step left" data-start="0.60" data-end="0.88">
+          <span class="story-subtitle">Безупречная классика</span>
+          <h2 class="story-title">Настоящая<br>роскошь</h2>
+          <p class="story-desc">Атмосфера закрытых джентльменских клубов Лондона</p>
+        </div>
+        <div class="story-step right" data-start="0.90" data-end="1.0">
+          <span class="story-subtitle">Tom Ford</span>
+          <h2 class="story-title">Выберите<br>свой объём</h2>
+          <p class="story-desc">Официальная коллекция Eau de Parfum</p>
+        </div>
+      </div>
+
+      <div class="scroll-progress-wrap">
+        <span class="scroll-hint" id="scroll-hint">Крутите колесико вниз</span>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="scroll-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Тёплая секция покупки после видео -->
+  <section class="white-boutique-section" id="boutique">
+    <div class="boutique-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Официальная коллекция</span>
+        <h2 class="section-main-title">Выберите свой объем аромата</h2>
+      </div>
+
+      <div class="product-showcase">
+        <div class="flacon-preview">
+          <div class="bottle-silhouette" id="bottle-visual">
+            <div class="bottle-cap"></div>
+            <div class="bottle-neck"></div>
+            <div class="bottle-plaque">
+              <strong>TOM FORD</strong>
+              <span>TOBACCO<br>VANILLE</span>
+              <small id="plaque-ml">EAU DE PARFUM<br>50 ML</small>
+            </div>
+          </div>
+          <span class="preview-badge" id="preview-caption">Классический флакон 50 мл</span>
+        </div>
+
+        <div class="product-details">
+          <h2>Tom Ford Tobacco Vanille</h2>
+          <p class="product-concentration">Eau de Parfum • Унисекс • Пряный восточный</p>
+          <p class="product-description">
+            Роскошный, теплый и культовый аромат, вдохновленный атмосферой закрытых джентльменских клубов Лондона. Насыщенные аккорды дорогого трубочного табака переплетаются со сливочной мадагаскарской ванилью, бобами тонка, какао и сухофруктами.
+          </p>
+
+          <div class="notes-pills">
+            <span class="note-pill">Лист табака</span>
+            <span class="note-pill">Мадагаскарская ваниль</span>
+            <span class="note-pill">Бобы тонка</span>
+            <span class="note-pill">Цветок табака</span>
+            <span class="note-pill">Какао и сухофрукты</span>
+          </div>
+
+          <span class="volume-label">Доступный объем (мл):</span>
+          <div class="volume-grid" id="volume-selector">
+            <div class="vol-option" data-ml="10" data-price="450 000 сум" data-scale="0.78" data-desc="Дорожный атомайзер (распив) 10 мл">
+              <span class="vol-ml">10 мл</span>
+              <span class="vol-type">Трэвел</span>
+            </div>
+            <div class="vol-option" data-ml="30" data-price="1 950 000 сум" data-scale="0.9" data-desc="Оригинальный флакон 30 мл">
+              <span class="vol-ml">30 мл</span>
+              <span class="vol-type">Флакон</span>
+            </div>
+            <div class="vol-option selected" data-ml="50" data-price="2 850 000 сум" data-scale="1" data-desc="Классический флакон 50 мл">
+              <span class="vol-ml">50 мл</span>
+              <span class="vol-type">Хит</span>
+            </div>
+            <div class="vol-option" data-ml="100" data-price="4 100 000 сум" data-scale="1.12" data-desc="Большой флакон 100 мл">
+              <span class="vol-ml">100 мл</span>
+              <span class="vol-type">Макси</span>
+            </div>
+            <div class="vol-option" data-ml="250" data-price="7 900 000 сум" data-scale="1.22" data-desc="Коллекционный графин Декантер 250 мл">
+              <span class="vol-ml">250 мл</span>
+              <span class="vol-type">Декантер</span>
+            </div>
+          </div>
+
+          <div class="purchase-bar">
+            <div class="price-display">
+              <span class="price-label">Стоимость</span>
+              <span class="price-value" id="current-price">2 850 000 сум</span>
+            </div>
+            <button class="order-btn" id="open-modal-btn">Оформить заказ</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="formats-grid-title">Все форматы выпуска</h3>
+      <div class="formats-cards">
+        <div class="format-card">
+          <div>
+            <div class="format-tag">Знакомство с ароматом</div>
+            <h3>10 мл — Travel Spray</h3>
+            <p>Компактный металлический флакон-спрей. Идеально помещается в карман пиджака или небольшую сумку.</p>
+          </div>
+          <div class="format-card-footer">
+            <span class="format-price">450 000 сум</span>
+            <button class="quick-select-btn" onclick="selectVolumeByMl('10')">Выбрать</button>
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div>
+            <div class="format-tag">Золотой стандарт</div>
+            <h3>50 мл — Eau de Parfum</h3>
+            <p>Фирменный флакон темного стекла в форме шахматной фигуры с золотистой табличкой и подарочной шкатулкой.</p>
+          </div>
+          <div class="format-card-footer">
+            <span class="format-price">2 850 000 сум</span>
+            <button class="quick-select-btn" onclick="selectVolumeByMl('50')">Выбрать</button>
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div>
+            <div class="format-tag">Полный размер</div>
+            <h3>100 мл — Eau de Parfum</h3>
+            <p>Увеличенный объем для истинных ценителей густого табачно-ванильного шлейфа с максимальной выгодой.</p>
+          </div>
+          <div class="format-card-footer">
+            <span class="format-price">4 100 000 сум</span>
+            <button class="quick-select-btn" onclick="selectVolumeByMl('100')">Выбрать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Модальное окно заказа -->
+  <div class="modal-backdrop" id="order-modal">
+    <div class="modal-window">
+      <button class="modal-close" id="close-modal-btn">&times;</button>
+      <h3>Быстрый заказ</h3>
+      <p class="modal-summary" id="modal-item-info">Tom Ford Tobacco Vanille — 50 мл (2 850 000 сум)</p>
+      <form id="order-form">
+        <div class="form-group">
+          <label>Ваше имя</label>
+          <input type="text" required placeholder="Введите имя">
+        </div>
+        <div class="form-group">
+          <label>Телефон или Telegram</label>
+          <input type="text" required placeholder="+998 (__) ___-__-__">
+        </div>
+        <div class="form-group">
+          <label>Адрес доставки</label>
+          <input type="text" required placeholder="Город, улица, дом">
+        </div>
+        <button type="submit" class="order-btn" style="width: 100%; margin-top: 10px;">Подтвердить заказ</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const scrollTrack = document.getElementById('scroll-track');
+    const scrollBar = document.getElementById('scroll-bar');
+    const header = document.getElementById('main-header');
+    const storySteps = document.querySelectorAll('.story-step');
+    const boutiqueSection = document.getElementById('boutique');
+    const scrollHint = document.getElementById('scroll-hint');
+
+    // Оптимизированный скролл-видео
+    let targetTime = 0;
+    let currentTime = 0;
+    let lastProgress = -1;
+    let isInBoutique = false;
+    let rafId = null;
+
+    function updateScrollProgress() {
+      const rect = scrollTrack.getBoundingClientRect();
+      const maxScroll = scrollTrack.offsetHeight - window.innerHeight;
+      const currentScroll = Math.min(Math.max(-rect.top, 0), maxScroll);
+      const progress = maxScroll > 0 ? currentScroll / maxScroll : 0;
+
+      // Обновляем прогресс-бар только при заметном изменении
+      if (Math.abs(progress - lastProgress) > 0.002) {
+        scrollBar.style.width = (progress * 100) + '%';
+        lastProgress = progress;
+      }
+
+      // Шапка
+      if (progress > 0.97) {
+        header.classList.add('scrolled-white');
+        scrollHint.style.opacity = '0';
+      } else {
+        header.classList.remove('scrolled-white');
+        scrollHint.style.opacity = '1';
+      }
+
+      // Тексты
+      storySteps.forEach(step => {
+        const start = parseFloat(step.dataset.start);
+        const end = parseFloat(step.dataset.end);
+        if (progress >= start && progress <= end) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+
+      // Видео
+      if (video.duration && !isNaN(video.duration) && video.readyState >= 2) {
+        targetTime = progress * video.duration;
+      }
+
+      // Анимация появления boutique
+      if (progress >= 0.98 && !isInBoutique) {
+        isInBoutique = true;
+        boutiqueSection.classList.add('visible');
+      } else if (progress < 0.95 && isInBoutique) {
+        isInBoutique = false;
+        boutiqueSection.classList.remove('visible');
+      }
+    }
+
+    function renderVideoFrame() {
+      if (video.duration && !isNaN(video.duration) && video.readyState >= 2) {
+        const diff = targetTime - currentTime;
+        // Более плавное и быстрое сглаживание
+        currentTime += diff * 0.18;
+        if (Math.abs(diff) > 0.008) {
+          video.currentTime = currentTime;
+        }
+      }
+      rafId = requestAnimationFrame(renderVideoFrame);
+    }
+
+    // Throttle scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Запуск
+    video.addEventListener('loadedmetadata', () => {
+      updateScrollProgress();
+    });
+    requestAnimationFrame(renderVideoFrame);
+    updateScrollProgress();
+
+    // IntersectionObserver для плавного появления секции
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
+          boutiqueSection.classList.add('visible');
+        }
+      });
+    }, { threshold: [0.1, 0.2] });
+    observer.observe(boutiqueSection);
+
+    // Переключение миллилитров
+    const volOptions = document.querySelectorAll('.vol-option');
+    const currentPriceEl = document.getElementById('current-price');
+    const plaqueMlEl = document.getElementById('plaque-ml');
+    const bottleVisual = document.getElementById('bottle-visual');
+    const previewCaption = document.getElementById('preview-caption');
+    const modalItemInfo = document.getElementById('modal-item-info');
+
+    let selectedMl = '50';
+    let selectedPrice = '2 850 000 сум';
+
+    function applyVolumeSelection(optionEl) {
+      volOptions.forEach(btn => btn.classList.remove('selected'));
+      optionEl.classList.add('selected');
+
+      selectedMl = optionEl.dataset.ml;
+      selectedPrice = optionEl.dataset.price;
+      const scale = optionEl.dataset.scale;
+      const desc = optionEl.dataset.desc;
+
+      currentPriceEl.textContent = selectedPrice;
+      plaqueMlEl.innerHTML = `EAU DE PARFUM<br>${selectedMl} ML`;
+      bottleVisual.style.transform = `scale(${scale})`;
+      previewCaption.textContent = desc;
+      modalItemInfo.textContent = `Tom Ford Tobacco Vanille — ${selectedMl} мл (${selectedPrice})`;
+    }
+
+    volOptions.forEach(option => {
+      option.addEventListener('click', () => applyVolumeSelection(option));
+    });
+
+    window.selectVolumeByMl = function(ml) {
+      const target = document.querySelector(`.vol-option[data-ml="${ml}"]`);
+      if (target) {
+        applyVolumeSelection(target);
+        document.getElementById('boutique').scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    // Модалка
+    const orderModal = document.getElementById('order-modal');
+    document.getElementById('open-modal-btn').addEventListener('click', () => {
+      orderModal.classList.add('open');
+    });
+    document.getElementById('close-modal-btn').addEventListener('click', () => {
+      orderModal.classList.remove('open');
+    });
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) orderModal.classList.remove('open');
+    });
+    document.getElementById('order-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert(`Спасибо! Ваш заказ на Tom Ford Tobacco Vanille (${selectedMl} мл) принят.`);
+      orderModal.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

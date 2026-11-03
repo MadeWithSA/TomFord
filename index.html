@@ -1,29 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TomFord — Luxury Perfumery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('tf_theme'));if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body data-page="home">
+
 <section class="video-scroll-track" id="scroll-track">
   <div class="sticky-viewport">
-    <!-- Вместо тега video используем быстродействующий canvas -->
     <canvas id="hero-canvas"></canvas>
     <div class="video-vignette"></div>
 
     <div class="story-overlay">
       <div class="story-step active" data-start="0" data-end="0.28">
-        <span class="story-subtitle">Private Blend Collection</span>
-        <h1 class="story-title">Tobacco Vanille</h1>
+        <span class="story-subtitle" data-i18n="s1_sub"></span>
+        <h1 class="story-title" data-i18n="s1_title"></h1>
       </div>
       <div class="story-step" data-start="0.30" data-end="0.62">
-        <span class="story-subtitle">Богатый пряный шлейф</span>
-        <h2 class="story-title">Листья табака и редкая ваниль</h2>
+        <span class="story-subtitle" data-i18n="s2_sub"></span>
+        <h2 class="story-title" data-i18n="s2_title"></h2>
       </div>
-      <div class="story-step" data-start="0.65" data-end="0.95">
-        <span class="story-subtitle">Безупречная классика</span>
-        <h2 class="story-title">Настоящая роскошь Тома Форда</h2>
+      <div class="story-step" data-start="0.65" data-end="0.97">
+        <span class="story-subtitle" data-i18n="s3_sub"></span>
+        <h2 class="story-title" data-i18n="s3_title"></h2>
       </div>
     </div>
 
     <div class="scroll-progress-wrap">
-      <span class="scroll-hint">Крутите колесико мыши вниз</span>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="scroll-bar"></div>
-      </div>
+      <span class="scroll-hint" data-i18n="scroll_hint"></span>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="scroll-bar"></div></div>
     </div>
   </div>
 </section>
+
+<section class="scenes" id="scenes">
+  <div class="scenes-stage">
+    <div class="scene s1"><span class="sub" data-i18n="sc1_sub"></span><div class="txt-l" data-i18n="sc1_l"></div><div class="txt-r" data-i18n="sc1_r"></div></div>
+    <div class="scene s2"><span class="sub" data-i18n="sc2_sub"></span><div class="txt-l" data-i18n="sc2_l"></div><div class="txt-r" data-i18n="sc2_r"></div></div>
+    <div class="scene s3"><span class="sub" data-i18n="sc3_sub"></span><div class="txt-l" data-i18n="sc3_l"></div><div class="txt-r" data-i18n="sc3_r"></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="head reveal"><h2 data-i18n="hits"></h2><p data-i18n="hits_sub"></p></div>
+  <div class="grid" id="hits"></div>
+  <div class="center reveal"><a class="btn ghost" href="catalog.html" data-i18n="all_catalog"></a></div>
+</section>
+
+<section class="cta reveal">
+  <h2 data-i18n="cta_title"></h2>
+  <p data-i18n="cta_text"></p>
+  <a class="btn" href="catalog.html" data-i18n="nav_catalog"></a>
+</section>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+<script src="js/hero.js"></script>
+</body>
+</html>

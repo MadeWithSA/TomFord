@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TomFord — Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('tf_theme'));if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body data-page="profile">
+
+<main class="page"><section class="section">
+  <div class="head"><h1 data-i18n="prof_title"></h1></div>
+  <div class="prof-wrap">
+    <aside class="side">
+      <h3 data-i18n="prof_data"></h3>
+      <form class="form" id="profForm">
+        <input name="name" data-i18n-ph="f_name">
+        <input name="phone" type="tel" data-i18n-ph="f_phone">
+        <input name="address" data-i18n-ph="f_addr">
+        <button class="btn" type="submit" data-i18n="save"></button>
+        <div class="msg ok" id="profMsg"></div>
+      </form>
+    </aside>
+    <div>
+      <h3 style="font-size:30px;margin-bottom:18px" data-i18n="prof_orders"></h3>
+      <div id="orders"></div>
+    </div>
+  </div>
+</section></main>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
